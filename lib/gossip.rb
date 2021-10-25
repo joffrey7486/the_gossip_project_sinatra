@@ -10,6 +10,7 @@ class Gossip
     @content = content
   end
 
+  # sauvegarder une lige de donnée dans la BD
   def save
     CSV.open("./db/gossip.csv", "ab") do |csv|
       csv << [@author, @content]
@@ -32,7 +33,7 @@ class Gossip
     return all_gossips[id]
   end
 
-
+  # méthode pour modifier une ligne de donnée
   def self.update(new_author, new_content, id)
     all_gossips = self.all
     all_gossips[id].content = content

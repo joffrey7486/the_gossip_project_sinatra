@@ -2,7 +2,7 @@ require 'gossip'
 
 class ApplicationController < Sinatra::Base
 
-  # montre tout les messages dans le menu
+  # page de départ avec tout les gossip ainsi qu'un petit menu
   get '/' do
     erb :index, locals: {gossips: Gossip.all}
   end
@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
     erb :new_gossip
   end
 
-  # créer un nouveau gossip
+  # création du nouveau gossip
   post '/gossips/new/' do  
     Gossip.new("#{params["gossip_author"]}", "#{params["gossip_content"]}").save
     redirect '/'
@@ -23,10 +23,12 @@ class ApplicationController < Sinatra::Base
     erb :show, locals: {gossip_n: Gossip.find(params['id'].to_i), id: params['id']}
   end
 
+  # page pour mofifier une ligne
   get "/gossips/:id/edit/" do
     erb :edit, locals: {id: params['id']}
   end
   
+  # modifie la ligne à modifier
   post "/gossips/:id/edit/" do
     Gossip.update(params["gossip_new_author"], params["gossip_new_content"], params["id"].to_i)
     redirect "/"
