@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>PAGE POTIN</title>
+  </head>
+  <body>
+    <h1>Page potin</h1>
+    <p>Voici la page du potin numéro <%= params["id"].to_i + 1 %></p>
+    <p>Son auteur est <%= gossip_n.author %></p>
+    <p>Contenu du potin : <%= gossip_n.content %></p>
+    <p><a href="/gossips/<%= id %>/edit/">Editer ce potin</a></p>
+    <form action='/gossips/<%= id %>/' method='POST'>
+      Ton nom :  <input type='text' name='comment_author'/><br/>
+      Ton commentaire : <input type='text' name='comment_content'/><br/>
+      <input type='submit'/>
+    </form>
+    <a href="/">Lien pour revenir à la page des potins</a>
+  </body>
+</html>
